@@ -1,15 +1,15 @@
 import {Component} from 'react'
 
-import Message from './components/Message'
+import {loginMessage, logoutMessage} from '../Message'
 
-import Logout from './components/Logout'
+import logoutButtonText from '../Logout'
 
-import Login from './components/Login'
+import loginButtonText from '../Login'
 
 import './index.css'
 
 class Home extends Component {
-  state: {isLoggedIn: false, messageText: 'Please Login'}
+  state = {isLoggedIn: false}
 
   onClickButton = () => {
     const {isLoggedIn} = this.state
@@ -17,27 +17,39 @@ class Home extends Component {
     if (isLoggedIn === false) {
       this.setState(prevState => ({
         isLoggedIn: true,
-        messageText: 'Welcome User',
       }))
     } else {
       this.setState(prevState => ({
         isLoggedIn: false,
-        messageText: 'Please Login',
       }))
     }
   }
 
   render() {
-    const {isLoggedIn, messageText} = this.state
+    const {isLoggedIn} = this.state
 
     return (
       <div className="container">
         <div className="card">
-          <Message message={messageText} />
+          <h1 className="heading">
+            {isLoggedIn ? logoutMessage : loginMessage}
+          </h1>
           {isLoggedIn ? (
-            <Logout onClick={this.onClickButton} />
+            <button
+              type="button"
+              className="button"
+              onClick={this.onClickButton}
+            >
+              {logoutButtonText}
+            </button>
           ) : (
-            <Login onClick={this.onClickButton} />
+            <button
+              type="button"
+              className="button"
+              onClick={this.onClickButton}
+            >
+              {loginButtonText}
+            </button>
           )}
         </div>
       </div>

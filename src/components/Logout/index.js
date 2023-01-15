@@ -1,12 +1,5 @@
 import './index.css'
 
-const Logout = props => {
-  const {onClick} = props
-  return (
-    <button className="button" type="button" onClick={onClick}>
-      Logout
-    </button>
-  )
-}
+const logoutButtonText = 'Logout'
 
-export default Logout
+export default logoutButtonText
